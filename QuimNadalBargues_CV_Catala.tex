@@ -68,6 +68,7 @@
     %to prevent spillover of tabular into next pages
     \usepackage{supertabular}
     \usepackage{tabularx}
+   % \usepackage{ltablex}
     \newlength{\fullcollw}
     \setlength{\fullcollw}{0.47\textwidth}
     
@@ -159,74 +160,90 @@
 
 %Interests/ Keywords/ Summary
 \section{Perfil Professional}
-Enginyer de Telecomunicacions amb més de 7 anys d'experiència en entorns d'alt rendiment, expert en sistemes crítics de control electrònic, 
-aplicacions software i sistemes incrustats. Sòlida trajectòria dirigint i implementant projectes de software internacionals (Dinamarca)
-mitjançant metodologies àgils, des de la definició de requisits, el disseny fins a la validació, amb especial atenció a la seguretat, la monitorització 
-i la gestió d'infraestructures tecnològiques. Capacitat demostrada per liderar equips tècnics, dissenyar sistemes resilients i optimitzar processos 
+Enginyer de Telecomunicacions amb més de 7 anys d'experiència en entorns d'alt rendiment, expert en sistemes de control electrònic, 
+aplicacions de software i sistemes incrustats. Sòlida trajectòria dirigint i implementant projectes de software internacionals 
+(principalment a Dinamarca) mitjançant metodologies àgils, participant en la definició de requisits, el disseny i la validació, 
+amb especial atenció a la seguretat, la monitorització i la gestió d'infraestructures tecnològiques.
+Capacitat demostrada per liderar equips tècnics, dissenyar sistemes resilients i optimitzar processos 
 tècnics i operatius, assegurant el compliment de polítiques de seguretat i la continuïtat del negoci.
 
 %Experience
 \section{Experiència Professional}
 
 \begin{jobshort}{Enginyer de Software | Creadis S.A (Barcelona - Híbrid)}{Novembre 2021 - Actualitat}\\
-    Responsable de la creació i el desenvolupament d'aplicacions electròniques de control crític per a sistemes de producció, transport i emmagatzemtage 
-    d'energia eòlica, cobrint tot el cicle de vida: definició, arquitectura, implementació i validació de software, 
-    amb alts requeriments de seguretat i disponibilitat. Coordinació i execució de projectes de processament de dades en temps real 
+    Responsable de la creació i el desenvolupament d'aplicacions de software per a sistemes electrònics de control per a sistemes 
+    de producció, transport i emmagatzemtage d'energia eòlica, cobrint tot el cicle de vida: 
+    definició de requisits, els conceptes a implementar, l'arquitectura de sistema, l'arquitectura de software, la implementació i validació de software, 
+    gestió del projecte i del procés àgil i avaluació de riscos (amb especial atenció als requisits de ciberseguretat).
+    Coordinació i execució de projectes de processament de dades en temps real 
     en controladors des de més de 200 sensors, inclòs el tractament i la supervisió d'alarmes, la redundància de sistemes i la detecció 
     d'incidències. Recentment, en paral·lel amb el projecte actual, participant en el desenvolupament d'un projecte intern d'optimització de dimensionament 
     d'una planta energètica (bateries, la seva ubicació...) en dependència amb un històric dels preus de mercat de l'energia per tal d'obtenir un màxim de
     benefici econòmic de la compra-venta d'energia.
-    En particular, he desenvolupat els següents projectes amb els següents clients:\\ \\
+    En particular, destacar el desenvolupament dels següents projectes amb els següents clients:\\ \\
     \vspace{0.3em}
     \textbf{Vestas Wind Systems A/S}, Disseny i Desenvolupament d'un Controlador d'arrancada d'una Planta de generació d'energia eòlica, \\
     Setembre 2025 – Actualitat, Dinamarca (remot)
     \begin{itemize}
-        \item Participació en la definició del projecte d'un controlador de planta que permet l'arrancada dels generadors d'energia: Definició de conceptes,
-        disseny dels conceptes, definició dels requisits i gestió de riscos.
-        \item Participació en la definició de l'estratègia global de l'empresa envers el projecte, avaluant punts febles i riscos, i orientant la infraestructura 
-        tecnològica als nous estàndards de l'energia verda.
-        \item Automatització de processos de desenvolupament i documentació en Matlab per anticipar futures càrregues de treball en moments crítics del projecte.
+        \item Participació en la definició del projecte d'un controlador de planta d'energia eòlica, que permet l'arrancada intel·ligent de les turbines: 
+        Definició de conceptes, disseny dels conceptes, definició dels requisits (unitaris i d'integració) i gestió de riscos.
+        \item Participació en la implementació dels requisits en base al disseny, en codi Matlab/Simulink, i en la corresponent validació de 
+        la implementació a través de test unitaris fets amb Simulink Test Harness, avaluant el compliment dels requisits.
+        \item Participació en la definició de l'estratègia global de l'empresa envers el projecte, avaluant punts febles i riscos, i adaptant la gestió del projecte
+        intern al procés d'entrega de productes de software del client  al mercat.
+        \item Modularització de la implementació per anticipar futures càrregues de treball en moments crítics del projecte.
     \end{itemize}
     \vspace{0.3em}
     \textbf{Siemens Energy, SA}, Software de Control i Càrregues, \\Gener 2023 - Juliol 2025, Dinamarca (remot)
     \begin{itemize}
-        \item Responsable del disseny, implementació i verificació de sistemes de control de càrrega, en Matlab/Simulink, processant dades de sensors per fer-los redundants i augmentar
-        la fiabilitat de la turbina, extreient les dades per a càlculs d'estructures fent possible la minimització d'ús de materials i la viabilitat dels
+        \item Responsable del disseny, implementació i verificació de sistemes de control de càrrega, en Matlab/Simulink, 
+        processant dades de sensors a través d'algorismes per obtenir dades d'altres sensors i augmentar la fiabilitat global
+        de la turbina, permetent càlculs ferms d'estructures, fent possible la minimització d'ús de materials i la viabilitat dels
         projectes.
-        \item Desenvolupament de programari d'automatització de sistemes de desenvolupament i verificació de software. Programat en Python.
-        \item Generació de documentació tècnica i manuals operatius per a operadors i mantenidors, assegurant la transferència de coneixement i l'adequació a processos 
-        d'auditoria interna.
-        \item Col·laboració estreta amb equips multidisciplinaris de Siemens Energy en tallers de millora contínua, fomentant la correcta integració de noves funcionalitats.
+        \item Generació de documentació tècnica en LaTex i manuals operatius per a operadors i mantenidors, assegurant la transferència de 
+        coneixement dels sistemes de software i l'adequació per a futurs processos d'auditoria interna.
+        \item Col·laboració estreta amb equips de software multidisciplinaris de Siemens Energy en tallers de millora contínua, fomentant la correcta integració de noves funcionalitats.
     \end{itemize}
     \vspace{0.3em}
     \textbf{Vestas Wind Systems A/S}, Software d'aplicació de Control de Turbines Eòliques,\\ 
     Novembre 2021 – Desembre 2023, Dinamarca (remot)
     \begin{itemize}
-        \item Responsable del disseny, implementació i verificació de sistemes de lubricació i de gir de les pales, mitjançant tècniques de control electrònic, 
-        integrats en turbines eòliques per a parcs de generació d'energia renovable. Desenvolupament amb C++ i Matlab/Simulink.
-        \item Implementació de millores en la seguretat dels sistemes de lubricació, mitjançant el desenvolupament amb una metodologia orientada en objectes  
-        d'un porotocol de comunicació i redundància entre dues bombes de lubricació.
+        \item Responsable del disseny, implementació i verificació de sistemes de lubricació i de gir de les pales de les turbines, 
+        mitjançant tècniques de control electrònic, integrats en turbines eòliques per a parcs de generació d'energia renovable. 
+        Desenvolupament amb C++ i Matlab/Simulink.
+        \item Implementació de millores en la seguretat dels sistemes de lubricació, mitjançant el desenvolupament amb una metodologia 
+        orientada en objectes d'un porotocol particular de comunicació i redundància entre dues bombes de lubricació.
         \item Lideratge en l'actualització i creació de tests, tant unitaris com d'integració, de les funcionalitats esmentades, aconseguint una 
         cobertura i un percentatge d'èxit del 100\% en la finalització del contracte.
+        \item Participació en la creació de tests per a operadors de turbina, amb el corresponent disseny de UX i assegurant la integració
+        del framework de test amb la lògica d'aplicació.
         \item Coordinació d'un equip de 20 desenvolupadors en la resolució de múltiples tasques de tots els models de turbina.
     \end{itemize}
 \end{jobshort}
 
 
-% \begin{joblong}{Enginyer de Software de Producte | Ficosa S.L (Sector Automoció, Barcelona)}{Febrer 2018 - Novembre 2021}
-%     Desenvolupament de programari en C per a sistemes d'assistència a l'aparcament pel Grup Volkswagen, 
-%     amb fort enfoc en la seguretat funcional, robustesa del codi i l'acompliment d'estàndards de la indústria (ISO 26262, AUTOSAR).
-%     Participació en equips multidisciplinaris per a la definició, execució i documentació de sistemes crítiques, amb especial èmfasi 
-%     en la traçabilitat de requisits i la mitigació de riscos relacionats amb la seguretat i la privacitat.
-%     Contribucions destacades:
-%     vspace{0.3em}
-%     \begin{itemize}
-%         \item Lideratge tècnic en l'arquitectura de sistemes de càmeres (visió posterior i superior), assegurant la integració segura li la compleció de tots els casos d'ús en referència a l'assistència d'aparcament, i la seva seguretat.
-%         \item Depuració de problemes complexes a través de l'anàlisi de comunicacions en xarxes CAN, Ethernet i RTP, amb detecció proactiva de vulnerabilitats o anomalies de seguretat.
-%         \item Disseny d'eines internes (Python) per a l'automatització de processos de gestió de projectes, la traçabilitat d'incidències de seguretat i l'auditoria d'accessos.
-%         \item Desenvolpament (Python) d'una eina d'automatització de generació de tasques a Jira, des d'una plantilla d'Excel, assegurant la traçabilitat de les tasques, agilitzant la gestió informàtica dels projectes un 90\%.
-%     \end{itemize}
-% \end{joblong}
+\begin{jobshort}{Enginyer de Software de Producte | Ficosa S.L (Sector Automoció, Barcelona)}{Febrer 2018 - Novembre 2021}
+    Desenvolupament de software en C, a través de la metodologia SCRUM, per a sistemes d'assistència a l'aparcament pel Grup Volkswagen, 
+    formant part de tota la cadena de desenvolupament (ASPICE), tant definició de requisits, el·laboració de l'arquitectura, 
+    desenvolupament de software i desenvolupament de proves, tant unitàries com d'integració.
+    En base els requisits, destacar la participació en equips multidisciplinaris per a la definició, execució i documentació del software,
+    amb especial èmfasi en la traçabilitat de requisits i la mitigació de riscos relacionats amb la seguretat i la privacitat, 
+    assegurant l'acompliment d'estàndards de la indústria (ISO 26262, AUTOSAR).
+    
+    Contribucions destacades:
+    \vspace{0.3em}
+    \begin{itemize}
+        \item Lideratge tècnic en l'arquitectura de sistemes de càmeres (visió posterior i superior), assegurant la integració 
+        segura i la compleció de tots els casos d'ús en referència a l'assistència d'aparcament, i la seva seguretat.
+        \item Desenvolupament d'un algorisme de calibració de les càmeres en base als requisits funcionals.
+        \item Depuració de problemes complexes a través de l'anàlisi de comunicacions en xarxes CAN, Ethernet i RTP, 
+        amb detecció proactiva de vulnerabilitats o anomalies de seguretat.
+        \item Desenvolpament (Python) d'una eina d'automatització de generació de tasques a Jira, des d'una plantilla d'Excel, 
+        assegurant la traçabilitat de les tasques, agilitzant la gestió informàtica dels projectes un 90\%.
+        \item Consecució de l'aprovació d'una auditoria interna on s'avaluava tot el procés de desenvolupament, des de requisits fins
+        la validació, validant també la gestió del projecte i la seva documentació.
+    \end{itemize}
+\end{jobshort}
 
 %Projects
 \section{Projectes}
@@ -257,35 +274,49 @@ el disseny estratègic de la xarxa era correcte i poder-lo optimitzar al màxim.
 %	EDUCATION
 %----------------------------------------------------------------------------------------
 \section{Educació}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2023 - Actualitat (Previst 2026) & Màster (Enginyeria Informàtica) at \textbf{Universitat Oberta de Catalunya} \\
-Especialització: Sistemes de Software Avançats i Computació Distribuïda.\\
+2023 - Actualitat (Previst 2026)  \textbf{Màster d'Enginyeria Informàtica a Universitat Oberta de Catalunya} \\
+Especialització: Sistemes de Software Avançats, Intel·ligència Artificial i Computació Distribuïda.\\
 Compatibilitzant amb treball professional a temps complet.\\
-Assignatures rellevants: Arquitectura al núvol, Intel·ligència Artificial, Ciberseguretat.\\
+Assignatures rellevants: Computació Avançada, Arquitectura al núvol i Sistemes Distribuïts, Intel·ligència Artificial i 
+Ciberseguretat.\\
 
-2013 - 2018 & Enginyeria de Telecomunicacions \textbf{Universitat Politècnica de Catalunya}\\ 
-Especialitat: Sistemes Electrònics. Treball final sobre una eina d'automatització de PM a Ficosa.
-\end{tabularx}
+2013 - 2018 \textbf{Enginyeria de Telecomunicacions Universitat Politècnica de Catalunya}\\ 
+Especialitat: Sistemes Electrònics.\\ 
+Treball final sobre una eina d'automatització de PM a Ficosa.\\
+Compatibilitzant els estudis amb l'execució dels projectes a l'Àfrica.
+
 
 %----------------------------------------------------------------------------------------
 %	PUBLICATIONS
 %----------------------------------------------------------------------------------------
-\section{Publications}
-\begin{refsection}[citations.bib]
-\nocite{*}
-\printbibliography[heading=none]
-\end{refsection}
+%\section{Publications}
+%\begin{refsection}[citations.bib]
+%\nocite{*}
+%\printbibliography[heading=none]
+%\end{refsection}
 
 %----------------------------------------------------------------------------------------
 %	SKILLS
 %----------------------------------------------------------------------------------------
-\section{Skills}
+\section{Habilitats Professionals}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
-Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
+    Generals &  \normalsize{Git, Windows, Linux, CAN, ETH, RTP, Android, Docker, Kubernetes}\\
+    Programació &  \normalsize{Python, C, C++, Matlab, Simulink, Java, Bash, Visual Basic, XML, JSON, SQL, LaTex}\\
+    Software Incrustat  &  \normalsize{Lauterbach TRACE32, J-Link Segger}\\  
+    Sector eòlica &  \normalsize{Eines internes de configuració de la turbina, eines personalitzades de SAP}\\  
+    Automoció &  \normalsize{Enterprise Architect, Eines de Vector (DaVinci Developer \& Configurator, P-CAN), ASPICE, DOORS}\\  
+    Gestió de Projectes &  \normalsize{Jira, SVN, Eines de Microsoft Office (Excel, Word, PPT...)}  
+\end{tabularx}
+
+\section{Habilitats Personals}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+    Idiomes &  \normalsize{Català i Castellà (nadiu) i Anglès (C1)}\\
+    Generals &  \normalsize{Humilitat, Treball en equip, Presa de decisions, pensament lògic, tolerància i respecte.}\\
+    Interests  &  \normalsize{Esports, Gimnàs, Videojocs, Fotografia, Viatges}\\  
+    Carnets de Conduir &  \normalsize{A, A2, A1, AM, B i PER} 
 \end{tabularx}
 
 \vfill
-\center{\footnotesize Last updated: \today}
+\center{\footnotesize Última actualització: \today}
 
 \end{document}
