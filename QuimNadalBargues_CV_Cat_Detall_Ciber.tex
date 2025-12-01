@@ -1,0 +1,372 @@
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Jitin Nair
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT DEFINITION
+%----------------------------------------------------------------------------------------
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx} % <-- graphicx must be loaded before \icon definition
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+%tabularx environment
+\usepackage{tabularx}
+\usepackage{array}
+
+%for lists within experience section
+\usepackage{enumitem}
+\usepackage{needspace}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+% \usepackage{ltablex}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[catalan]{babel}
+\usepackage{fontawesome5} % Paquet d'icones modern
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\definecolor{sectioncolor}{rgb}{0.2,0.4,0.7}
+    
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright\color{sectioncolor}}{}{0em}{}[\color{sectioncolor}\titlerule]
+\titlespacing{\section}{0pt}{12pt}{6pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+% Make PDF strings safe: remove/replace fragile/icon commands when hyperref writes bookmarks
+\pdfstringdefDisableCommands{%
+    % remove visual icon in bookmarks
+    \def\icon#1{}%
+    % replace fontawesome macros with plain text labels for bookmarks
+    \def\faUser{Perfil}%
+    \def\faBriefcase{Experi\`encia}%
+    \def\faProjectDiagram{Projectes}%
+    \def\faGraduationCap{Educaci\'o}%
+    \def\faCogs{Habilitats}%
+    \def\faUserFriends{Habilitats Personals}%
+    \def\faLock{Seguretat}%
+    \def\faLinkedin{LinkedIn}%
+    \def\faEnvelope{Email}%
+    \def\faMobile{Tel\`efon}%
+    \def\faGithub{GitHub}%
+    \def\faHome{Localitat}%
+    \def\faSyncAlt{Actualitzaci\'o}%
+}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+
+% Custom commands for icons (make robust so it won't break in moving arguments)
+% graphicx must be loaded before this command
+\DeclareRobustCommand{\icon}[1]{\raisebox{-0.1\height}{\color{sectioncolor}#1}}
+
+% job listing environments
+% joblong: Title (bold) on first line, date (small italic) left-aligned on next line, then itemize body
+\newenvironment{joblong}[2]
+    {
+    \vspace{4pt}
+    \noindent\textbf{#1}\par
+    \noindent{\small\itshape #2}\par
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
+    }
+    {
+    \end{itemize}
+    \end{minipage}
+    \vspace{6pt}
+    }
+
+% jobshort: same format but slightly smaller title font and no automatic itemize wrapper
+\newenvironment{jobshort}[2]
+    {
+    \vspace{4pt}
+    \noindent{\small\textbf{#1}}\par
+    \noindent{\small\itshape #2}\par
+    }
+    {
+    \vspace{6pt}
+    }
+
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\begin{minipage}[c]{0.20\linewidth}
+\includegraphics[width=2.6cm,height=2.6cm,keepaspectratio]{media/ProfilePicture.png}
+\end{minipage} &
+\begin{minipage}[c]{0.78\linewidth}
+{\Huge\bfseries Quim Nadal Bargués}\\[4pt]
+{\small
+\href{https://www.linkedin.com/in/quimnadalbargues/}{\color{linkcolour}\faLinkedin\ \ Quim Nadal Bargués} \ $|$ 
+\href{mailto:quimnaba@gmail.com}{\color{linkcolour}\faEnvelope\ \ quimnaba@gmail.com} \ $|$ \\
+\href{tel:+34620200817}{\color{linkcolour}\faMobile\ \ +34 620.200.817} \ $|$ 
+\href{https://github.com/quimnaba123}{\color{linkcolour}\faGithub\ \ quimnaba123} \ $|$ 
+\href{}{\raisebox{-0.05\height}{\color{linkcolour}\faHome} \textcolor{linkcolour}{Barcelona}}
+}
+\end{minipage} \\
+\end{tabularx}
+\vspace{6pt}
+\noindent{\color{linkcolour}\rule{\linewidth}{1pt}}\par\vspace{6pt}
+
+%----------------------------------------------------------------------------------------
+% EXPERIENCE SECTIONS
+%----------------------------------------------------------------------------------------
+
+%Interests/ Keywords/ Summary
+\section{\texorpdfstring{\icon{\faUser}\ Perfil Professional}{Perfil Professional}}
+Enginyer de Telecomunicacions amb més de 7 anys d'experiència en entorns d'alt rendiment i alta disponibilitat, especialitzat en l'arquitectura, 
+gestió i seguretat d'infraestructures tecnològiques complexes. Sòlida trajectòria liderant projectes crítics, definint estratègies tècniques i assegurant 
+la resiliència, el rendiment i la seguretat dels sistemes. Experiència en governança TIC, disseny de xarxes, supervisió d'entorns híbrids (on-premise/cloud), 
+i implementació de polítiques de seguretat per garantir la integritat, confidencialitat i disponibilitat de la informació. Capacitat demostrada per dirigir equips tècnics, 
+optimitzar processos operatius i alinear la infraestructura tecnològica amb els objectius del negoci.
+
+%Experience
+\section{\texorpdfstring{\icon{\faBriefcase}\ Experiència Professional}{Experiència Professional}}
+
+\begin{itemize}[leftmargin=*,label=\textbullet]
+\item \begin{jobshort}{\includegraphics[width=1.2cm]{media/DisCreadis.png} 
+    	\textbf{\large Enginyer de Productes de Software | Creadis S.A}}{Novembre 2021 - Actualitat, Barcelona (Híbrid)}
+    \textbf{Responsable tècnic de l'arquitectura, seguretat i disponibilitat dels sistemes de control} 
+    per a infraestructures crítiques de generació i transport d'energia. 
+    Direcció i implementació del cicle de vida complet dels sistemes, amb especial atenció als requisits de \textbf{ciberseguretat, redundància, monitorització i continuïtat operativa}. 
+    Lideratge en la definició d'estratègies tècniques i avaluació de riscos per garantir la fiabilitat dels serveis.
+    A través de Creadis, he col·laborat amb empreses líders del sector energètic a Dinamarca, com Vestas i Siemens Energy, 
+    aportant solucions innovadores i robustes per a la gestió de sistemes crítics.
+    En concret, les meves contribucions inclouen:\\[0.6em]
+
+    {\large\textbf{\raisebox{-0.12\height}{\includegraphics[width=1.0cm]{media/Vestas.jpeg}} Vestas Wind Systems A/S, Estratègia i Governança per a un Sistema de Control de Planta}} \\
+    \noindent{\small\itshape Setembre 2025 - Actualitat, Dinamarca (remot)}\par
+    \begin{itemize}
+        \item \textbf{Definició de l'estratègia tècnica} i l'arquitectura de sistema per al controlador d'una planta 
+        eòlica, assegurant l'escalabilitat, el manteniment i la seguretat del sistema.
+        \item \textbf{Gestió de riscos i governança:} Avaluació exhaustiva dels riscos tècnics i de seguretat. 
+        Definició i aplicació de polítiques i estàndards de desenvolupament segur.
+        \item \textbf{Supervisió de l'arquitectura:} Disseny modular i resilient per garantir l'alta disponibilitat 
+        i facilitar el manteniment futur de la infraestructura de control.
+    \end{itemize}
+
+    \vspace{0.6em}
+    \Needspace{6\baselineskip}
+    {\large\textbf{\raisebox{-0.12\height}{\includegraphics[width=1.0cm]{media/siemensEnergy.png}}\linebreak[2] 
+    Siemens Energy, SA, Infraestructura de Software i Gestió de Configuracions}}\\
+    \noindent{\small\itshape Gener 2023 - Juliol 2025, Dinamarca (remot)}\par
+    \begin{itemize}
+        \item \textbf{Supervisió de la integritat del sistema:} Responsable de l'arquitectura de software que processa 
+        dades de centenars de sensors, garantint la fiabilitat i disponibilitat dels càlculs estructurals crítics.
+        \item \textbf{Governança documental:} Establiment i manteniment d'un sistema integral de documentació tècnica 
+        (LaTeX), assegurant el compliment d'estàndards de qualitat i preparant els sistemes per a auditories.
+        \item \textbf{Coordinació tècnica:} Col·laboració estreta amb equips multidisciplinaris per a la integració 
+        segura de noves funcionalitats en la infraestructura existent.
+    \end{itemize}
+
+    \vspace{0.6em}
+    {\large\textbf{\raisebox{-0.12\height}{\includegraphics[width=1.0cm]{media/Vestas.jpeg}} Vestas Wind Systems A/S, Seguretat, Redundància i Monitorització de Sistemes}} \\
+    \noindent{\small\itshape Novembre 2021 - Desembre 2023, Dinamarca (remot)}\par
+    \begin{itemize}
+        \item \textbf{Arquitectura de sistemes resilients:} Disseny i implementació de sistemes de control amb protocols 
+        de comunicació redundants per a sistemes crítics (lubricació, gir de pales), augmentant significativament la 
+        disponibilitat.
+        \item \textbf{Estratègia de seguretat aplicada:} Desenvolupament d'un protocol de comunicació segur i robust entre 
+        components crítics, orientat a objectius d'integritat i confidencialitat.
+        \item \textbf{Gestió integral de la infraestructura de proves:} Lideratge en la creació i manteniment d'un entorn 
+        de proves (unitari i d'integració) amb cobertura del 100\%, essencial per a la fiabilitat i el rendiment dels serveis.
+        \item \textbf{Supervisió d'equip:} Coordinació tècnica d'un equip de 20 desenvolupadors, assegurant l'alineació 
+        amb les estratègies de qualitat i seguretat definides.
+    \end{itemize}
+\end{jobshort}\item \begin{jobshort}{\includegraphics[width=1.2cm]{media/Ficosa.jpg} \textbf{\large Enginyer de Software de Producte | Ficosa S.L (Sector Automoció, Barcelona)}}{Febrer 2018 - Novembre 2021}
+    Desenvolupament de software segur per a sistemes crítics d'assistència a la conducció, amb estrictes requisits de 
+    disponibilitat i seguretat (ISO 26262, AUTOSAR). Experiència en la governança de processos de desenvolupament 
+    (ASPICE) i en l'assegurament de la qualitat i traçabilitat en tot el cicle de vida del software.
+    
+    Contribucions destacades:
+    \vspace{0.3em}
+    \begin{itemize}
+        \item \textbf{Arquitectura de xarxes i comunicacions segures:} Lideratge en el disseny i integració de sistemes 
+        de càmeres, assegurant la comunicació fiable i segura a través de busos CAN, Ethernet i protocols RTP. 
+        Detecció i anàlisi de vulnerabilitats en les comunicacions.
+        \item \textbf{Governança del cicle de vida:} Aprovació d'auditories internes que avaluaven tot el procés de 
+        desenvolupament (requisits, disseny, implementació, validació), 
+        garantint el compliment dels estàndards de la indústria.
+        \item \textbf{Automatització i eficiència operativa:} Desenvolupament d'una eina interna (Python) per a 
+        l'automatització de la gestió de projectes (Jira), millorant la 
+        traçabilitat i optimitzant els processos un 90\%.
+    \end{itemize}
+\end{jobshort}
+
+\item \begin{jobshort}{\includegraphics[width=1cm]{media/itnow.jpeg} \textbf{\large Pràctiques de Consultoria Tecnològica | ITNow (Sector Banca, Barcelona)}}{Setembre 2017 - Gener 2018}
+    Primera experiència professional en entorns de sistemes i infraestructures, participant en projectes de gestió de xarxes i 
+    administració de sistemes per a grans entitats financeres.
+    
+    Tasques i aprenentatges clau:
+    \begin{itemize}
+        \item \textbf{Gestió d'infraestructura IP:} Participació en el desenvolupament i implementació d'una aplicació per a 
+        la gestió centralitzada del pla d'adreces IP de \textbf{La Caixa} i proveïdors externs.
+        \item \textbf{Administració de servidors web:} Aprenentatge i aplicació bàsica de configuracions en entorns \textbf{Apache}, incloent-hi la instal·lació 
+        i gestió de servidors web i la implementació de protocols de seguretat \textbf{SSL/TLS} per a comunicacions xifrades.
+        \item \textbf{Bases de dades i operacions:} Experiència inicial en la configuració i administració de bases de dades \textbf{MySQL}, 
+        centrant-se en el disseny de schemas i consultes per a aplicacions de gestió.
+        \item \textbf{Virtualització i infraestructura:} \textbf{Aprenentatge profund en la operació i gestió de màquines virtuals}, incloent-hi la creació, 
+        configuració, clonació i manteniment d'entorns virtualitzats.
+    \end{itemize}
+\end{jobshort}
+\end{itemize}
+
+%Projects
+\section{\texorpdfstring{\icon{\faProjectDiagram}\ Projectes Rellevants}{Projectes Rellevants}}
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+ {\large\textbf{\includegraphics[width=0.6cm]{media/mister.png} 2025 - Arquitectura i Automatització d'un Sistema de Procesament de Dades}} & \\
+ & \vspace{4pt} \href{https://github.com/quimnaba123/mister-md-scraper}{\faGithub\ Mister MD Scraper} \\[3.75pt]
+\end{tabularx}
+    Disseny i implementació d'un \textbf{sistema automatitzat, paral·lel} (Python) per al recopilació, processament i 
+    anàlisi de dades a gran escala. El sistema pren dades de diverses fonts, les compara amb regles de negoci 
+    definides i genera recomanacions accionables. 
+    Il·lustra la capacitat per crear eines que optimitzen processos, estalvien temps i donen suport a 
+    la presa de decisions.\\
+
+{\large\textbf{\includegraphics[width=0.8cm]{media/stjohngod.jpeg} 2019 - Disseny, Desplegament i Administració d'una Xarxa Corporativa}} \hfill \\[3.75pt]
+    \textbf{Lideratge en el disseny i implementació in-situ} de la infraestructura de xarxa (LAN/WAN) per a un hospital rural. 
+    Responsable de tot el cicle: 
+    Definició del projecte col·laborant estretament amb el personal sanitari de l'Hospital Sant Joan de Déu, de Barcelona,
+    avaluació de les necessitats de la contrapart, disseny estratègic del pla de xarxa (optimitzant cobertura i rendiment), 
+    instal·lació física (cablejat, punt d'accés 4G), 
+    configuració de servidors i commutadors, i assegurament de la connectivitat i disponibilitat dels serveis crítics 
+    (internet i intranet).\\
+
+{\large\textbf{\includegraphics[width=1cm]{media/Gambo.png} 2018 - Disseny i Implementació d'un carregador de bateries solars per equipamen mèdic a Gambo, Etiòpia}} \hfill \\[3.75pt]
+    \textbf{Lideratge en el disseny i la implementació d'un projecte de digitalització}, 
+    col·laborant estretament amb la universitat ESADE, i 
+    la fundació Iñaki Alegría, dins del marc de l'associació Aucop -associació de la UPC-,   
+    per la digitalització d'un centre mèdic rural a Gambo, Etiòpia. 
+    Es va dur a terme el disseny i la implementació d'un carregador de bateries solars
+    per equipamen mèdic, per tal de garantir el subministrament elèctric necessari 
+    per tal de desacoblar-se de les interrupcions constants del subministrament elèctric de la zona.\\
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\Needspace{20\baselineskip}
+\section{\texorpdfstring{\icon{\faGraduationCap}\ Educació}{Educació}}
+\begin{tabularx}{\linewidth}{@{}X >{\raggedleft\arraybackslash}p{0.28\linewidth}@{}}
+% UOC entry: left = content, right = date (italic, small)
+{\raisebox{-0.65\height}{\includegraphics[width=0.9cm]{media/uoc.png}}\hspace{0.5em}
+\begin{minipage}[t]{\linewidth}
+	\textbf{Màster d'Enginyeria Informàtica}\\
+	\textbf{Universitat Oberta de Catalunya}\\
+    Especialització: Sistemes de Software Avançats, Intel·ligència Artificial i Computació Distribuïda.\\
+    \textbf{Assignatures directament aplicables:} \textit{Arquitectura al núvol i Sistemes Distribuïts} 
+    (disseny d'infraestructures escalables), \textit{Ciberseguretat} (governança, polítiques, anàlisi de riscos), 
+    \textit{Computació Avançada} (rendiment i optimització).
+\end{minipage}}
+& {\begin{minipage}[t]{\linewidth}\footnotesize\itshape 2023 - Actualitat (Previst 2026)\end{minipage}} \\
+\\[6pt]
+% UPC entry
+{\raisebox{-0.65\height}{\includegraphics[width=0.9cm]{media/upc.png}}\hspace{0.5em}
+\begin{minipage}[t]{\linewidth}
+	\textbf{Enginyeria de Telecomunicacions}\\
+	\textbf{Universitat Politècnica de Catalunya}\\
+    Especialitat: Sistemes Electrònics (fonaments de xarxes, comunicacions, sistemes digitals).\\
+    Etapa on es van implementar els projectes rellevants a l'Àfrica.
+\end{minipage}}
+& {\begin{minipage}[t]{\linewidth}\footnotesize\itshape 2013 - 2018\end{minipage}} 
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS
+%----------------------------------------------------------------------------------------
+%\section{Publications}
+%\begin{refsection}[citations.bib]
+%\nocite{*}
+%\printbibliography[heading=none]
+%\end{refsection}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{\texorpdfstring{\icon{\faCogs}\ Habilitats Professionals}{Habilitats Professionals}}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+    \icon{\faNetworkWired} \textbf{Infraestructura \& Xarxes} &  Arquitectura de Sistemes, Xarxes LAN/WAN (disseny i diagnòstic), Comunicacions (CAN, ETH, RTP), Virtualització (Docker/Kubernetes *), Linux/Windows Server, Principis de Cloud Híbrid.\\
+    \icon{\faLock} \textbf{Seguretat \& Governança} &  Ciberseguretat en Sistemes Crítics, Anàlisi de Riscos, Compliment d'Estandards (ISO 26262, ASPICE), Polítiques de Seguretat, Auditoria Interna, Documentació Tècnica (LaTeX).\\
+    \icon{\faCode} \textbf{Desenvolupament \& Automatització} &  Python (Scripting, Eines Internes), C/C++, Matlab/Simulink, Bash, Git, SQL.\\
+    \icon{\faTasks} \textbf{Gestió \& Operacions} &  Supervisió d'Equips Tècnics, Gestió de Projectes (Jira, Metodologies Àgils/SCRUM), Monitorització de Sistemes, Manteniment Preventiu/Correctiu, Continuïtat del Negoci.\\
+\end{tabularx}
+\vspace{0.2em}
+{\footnotesize \textit{* Nota: Experiència teòrica i acadèmica en Docker/Kubernetes, amb forts fonaments en computació distribuïda i containers, en procés d'implementació pràctica en projectes actuals.}}
+
+\Needspace{10\baselineskip}
+\section{\texorpdfstring{\icon{\faUserFriends}\ Habilitats Personals}{Habilitats Personals}}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+    \icon{\faLanguage} Idiomes &  Català i Castellà (nadiu, C1 certificat) i Anglès (avançat, C1). 
+    Alt grau d'experiència amb relacions internacionals.\\
+    \icon{\faChessKing} Lideratge &  Capacitat per dirigir equips tècnics, prendre decisions estratègiques amb visió global i motivar per assolir els objectius de seguretat.\\
+    \icon{\faCogs} Pensament Sistèmic &  Capacitat per analitzar i dissenyar sistemes complexos, entenent les interdependències entre infraestructura, seguretat i negoci.\\
+    \icon{\faHandshake} Comunicació &  Empatia, escolta activa i capacitat per explicar conceptes complexos a audiències tècniques i executives. 
+    Capacitat de treball en entorns multidisciplinaris.
+\end{tabularx}
+
+\vfill
+\begin{center}
+    {\footnotesize \icon{\faSync} Última actualització: \today}
+\end{center}
+\end{document}
