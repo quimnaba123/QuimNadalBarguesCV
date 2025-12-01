@@ -1,4 +1,3 @@
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
 %	The MIT License (MIT)
 %
 %	Copyright (c) 2021 Jitin Nair
@@ -24,66 +23,55 @@
 %----------------------------------------------------------------------------------------
 %	DOCUMENT DEFINITION
 %----------------------------------------------------------------------------------------
-
-% article class because we want to fully customize the page and not use a cv template
 \documentclass[a4paper,12pt]{article}
 
 %----------------------------------------------------------------------------------------
 %	FONT
 %----------------------------------------------------------------------------------------
 
-% % fontspec allows you to use TTF/OTF fonts directly
-% \usepackage{fontspec}
-% \defaultfontfeatures{Ligatures=TeX}
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
 
-% % modified for ShareLaTeX use
-% \setmainfont[
-    % SmallCapsFont = Fontin-SmallCaps.otf,
-    % BoldFont = Fontin-Bold.otf,
-    % ItalicFont = Fontin-Italic.otf
-    % ]
-    % {Fontin.otf}
-    
-    %----------------------------------------------------------------------------------------
-    %	PACKAGES
-    %----------------------------------------------------------------------------------------
-    \usepackage{url}
-    \usepackage{parskip} 	
-    
-    %other packages for formatting
-    \RequirePackage{color}
-    \RequirePackage{graphicx}
-    \usepackage[usenames,dvipsnames]{xcolor}
-    \usepackage[scale=0.9]{geometry}
-    
-    %tabularx environment
-    \usepackage{tabularx}
-    
-    %for lists within experience section
-    \usepackage{enumitem}
-    
-    % centered version of 'X' col. type
-    \newcolumntype{C}{>{\centering\arraybackslash}X} 
-    
-    %to prevent spillover of tabular into next pages
-    \usepackage{supertabular}
-    \usepackage{tabularx}
-   % \usepackage{ltablex}
-    \newlength{\fullcollw}
-    \setlength{\fullcollw}{0.47\textwidth}
-    
-    %custom \section
-    \usepackage{titlesec}				
-    \usepackage{multicol}
-    \usepackage{multirow}
-    \usepackage[catalan]{babel}
-    \usepackage{fontawesome5} % Paquet d'icones modern
-    \definecolor{linkcolour}{rgb}{0,0.2,0.6}
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx} % <-- graphicx must be loaded before \icon definition
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+%tabularx environment
+\usepackage{tabularx}
+\usepackage{array}
+
+%for lists within experience section
+\usepackage{enumitem}
+\usepackage{needspace}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+% \usepackage{ltablex}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[catalan]{babel}
+\usepackage{fontawesome5} % Paquet d'icones modern
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\definecolor{sectioncolor}{rgb}{0.2,0.4,0.7}
     
 %CV Sections inspired by: 
 %http://stefano.italians.nl/archives/26
-\titleformat{\section}{\Large\scshape\raggedright\color{linkcolour}}{}{0em}{}[\color{linkcolour}\titlerule]
-\titlespacing{\section}{0pt}{10pt}{10pt}
+\titleformat{\section}{\large\scshape\raggedright\color{sectioncolor}}{}{0em}{}[\color{sectioncolor}\titlerule]
+\titlespacing{\section}{0pt}{12pt}{6pt}
 
 %for publications
 \usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
@@ -92,6 +80,24 @@
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+% Make PDF strings safe: remove/replace fragile/icon commands when hyperref writes bookmarks
+\pdfstringdefDisableCommands{%
+    % remove visual icon in bookmarks
+    \def\icon#1{}%
+    % replace fontawesome macros with plain text labels for bookmarks
+    \def\faUser{Perfil}%
+    \def\faBriefcase{Experi\`encia}%
+    \def\faProjectDiagram{Projectes}%
+    \def\faGraduationCap{Educaci\'o}%
+    \def\faCogs{Habilitats}%
+    \def\faUserFriends{Habilitats Personals}%
+    \def\faLinkedin{LinkedIn}%
+    \def\faEnvelope{Email}%
+    \def\faMobile{Tel\`efon}%
+    \def\faGithub{GitHub}%
+    \def\faHome{Localitat}%
+    \def\faSyncAlt{Actualitzaci\'o}%
+}
 \addbibresource{citations.bib}
 \setlength\bibitemsep{1em}
 
@@ -101,30 +107,36 @@
 %debug page outer frames
 %\usepackage{showframe}
 
+% Custom commands for icons (make robust so it won't break in moving arguments)
+% graphicx must be loaded before this command
+\DeclareRobustCommand{\icon}[1]{\raisebox{-0.1\height}{\color{sectioncolor}#1}}
 
 % job listing environments
-\newenvironment{jobshort}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    }
-    {
-    }
-
+% joblong: Title (bold) on first line, date (small italic) left-aligned on next line, then itemize body
 \newenvironment{joblong}[2]
     {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
+    \vspace{4pt}
+    \noindent\textbf{#1}\par
+    \noindent{\small\itshape #2}\par
     \begin{minipage}[t]{\linewidth}
     \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
     }
     {
     \end{itemize}
-    \end{minipage}    
+    \end{minipage}
+    \vspace{6pt}
     }
 
+% jobshort: same format but slightly smaller title font and no automatic itemize wrapper
+\newenvironment{jobshort}[2]
+    {
+    \vspace{4pt}
+    \noindent{\small\textbf{#1}}\par
+    \noindent{\small\itshape #2}\par
+    }
+    {
+    \vspace{6pt}
+    }
 
 
 %----------------------------------------------------------------------------------------
@@ -138,12 +150,6 @@
 %----------------------------------------------------------------------------------------
 %	TITLE
 %----------------------------------------------------------------------------------------
-
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
 
 \begin{tabularx}{\linewidth}{@{}l X@{}}
 \begin{minipage}[c]{0.20\linewidth}
@@ -168,7 +174,7 @@
 %----------------------------------------------------------------------------------------
 
 %Interests/ Keywords/ Summary
-\section{Perfil Professional}
+\section{\texorpdfstring{\icon{\faUser}\ Perfil Professional}{Perfil Professional}}
 Enginyer de Telecomunicacions amb més de 7 anys d'experiència en entorns d'alt rendiment, expert en sistemes de control electrònic, 
 aplicacions de software i sistemes incrustats. Sòlida trajectòria dirigint i implementant projectes de software internacionals 
 (principalment a Dinamarca) mitjançant metodologies àgils, participant en la definició de requisits, el disseny i la validació, 
@@ -177,9 +183,9 @@ Capacitat demostrada per liderar equips tècnics, dissenyar sistemes resilients 
 tècnics i operatius, assegurant el compliment de polítiques de seguretat i la continuïtat del negoci.
 
 %Experience
-\section{Experiència Professional}
+\section{\texorpdfstring{\icon{\faBriefcase}\ Experiència Professional}{Experiència Professional}}
 
-\begin{jobshort}{Enginyer de Software | Creadis S.A (Barcelona - Híbrid)}{Novembre 2021 - Actualitat}\\
+\begin{jobshort}{\includegraphics[width=1.2cm]{media/DisCreadis.png} \textbf{\large Enginyer de Software | Creadis S.A}}{Novembre 2021 - Actualitat, Barcelona (Híbrid)}
     Responsable de la creació i el desenvolupament d'aplicacions de software per a sistemes electrònics de control per a sistemes 
     de producció, transport i emmagatzemtage d'energia eòlica, cobrint tot el cicle de vida: 
     definició de requisits, disseny de conceptes a implementar, l'arquitectura de sistema, l'arquitectura de software, la implementació i validació de software, 
@@ -189,10 +195,11 @@ tècnics i operatius, assegurant el compliment de polítiques de seguretat i la 
     d'incidències. Recentment, en paral·lel amb el projecte actual, participant en el desenvolupament d'un projecte intern d'optimització de dimensionament 
     d'una planta energètica (bateries, la seva ubicació...) en dependència amb un històric dels preus de mercat de l'energia per tal d'obtenir un màxim de
     benefici econòmic de la compra-venta d'energia.
-    En particular, destacar el desenvolupament dels següents projectes amb els següents clients:\\ \\
+    En particular, destacar el desenvolupament dels següents projectes amb els següents clients:
+    \\ \\
     \vspace{0.3em}
-    \textbf{Vestas Wind Systems A/S}, Disseny i Desenvolupament d'un Controlador d'arrancada d'una Planta de generació d'energia eòlica, \\
-    Setembre 2025 – Actualitat, Dinamarca (remot)
+    {\large\textbf{\raisebox{-0.12\height}{\includegraphics[width=1.0cm]{media/Vestas.jpeg}} Vestas Wind Systems A/S, Disseny i Desenvolupament d'un Controlador d'arrancada d'una Planta de generació d'energia eòlica}} \\
+    \noindent{\small\itshape Setembre 2025 - Actualitat, Dinamarca (remot)}\par
     \begin{itemize}
         \item Participació en la definició del projecte d'un controlador de planta d'energia eòlica, que permet l'arrancada intel·ligent de les turbines: 
         Definició de conceptes, disseny dels conceptes, definició dels requisits (unitaris i d'integració) i gestió de riscos.
@@ -203,7 +210,9 @@ tècnics i operatius, assegurant el compliment de polítiques de seguretat i la 
         \item Modularització de la implementació per anticipar futures càrregues de treball en moments crítics del projecte.
     \end{itemize}
     \vspace{0.3em}
-    \textbf{Siemens Energy, SA}, Software de Control i Càrregues, \\Gener 2023 - Juliol 2025, Dinamarca (remot)
+    \Needspace{6\baselineskip}
+    {\large\textbf{\raisebox{-0.12\height}{\includegraphics[width=1.0cm]{media/siemensEnergy.png}}\linebreak[2] Siemens Energy, SA, Software de Control i Càrregues}}\\
+    \noindent{\small\itshape Gener 2023 - Juliol 2025, Dinamarca (remot)}\par
     \begin{itemize}
         \item Responsable del disseny, implementació i verificació de sistemes de control de càrrega, en Matlab/Simulink, 
         processant dades de sensors a través d'algorismes per obtenir dades d'altres sensors i augmentar la fiabilitat global
@@ -214,8 +223,8 @@ tècnics i operatius, assegurant el compliment de polítiques de seguretat i la 
         \item Col·laboració estreta amb equips de software multidisciplinaris de Siemens Energy en tallers de millora contínua, fomentant la correcta integració de noves funcionalitats.
     \end{itemize}
     \vspace{0.3em}
-    \textbf{Vestas Wind Systems A/S}, Software d'aplicació de Control de Turbines Eòliques,\\ 
-    Novembre 2021 – Desembre 2023, Dinamarca (remot)
+    {\large\textbf{\raisebox{-0.12\height}{\includegraphics[width=1.0cm]{media/Vestas.jpeg}} Vestas Wind Systems A/S, Software d'aplicació de Control de Turbines Eòliques.}} \\
+    \noindent{\small\itshape Novembre 2021 - Desembre 2023, Dinamarca (remot)}\par
     \begin{itemize}
         \item Responsable del disseny, implementació i verificació de sistemes de lubricació i de gir de les pales de les turbines, 
         mitjançant tècniques de control electrònic, integrats en turbines eòliques per a parcs de generació d'energia renovable. 
@@ -231,7 +240,7 @@ tècnics i operatius, assegurant el compliment de polítiques de seguretat i la 
 \end{jobshort}
 
 
-\begin{jobshort}{Enginyer de Software de Producte | Ficosa S.L (Sector Automoció, Barcelona)}{Febrer 2018 - Novembre 2021}
+\begin{jobshort}{\includegraphics[width=1.2cm]{media/Ficosa.jpg} \textbf{\large Enginyer de Software de Producte | Ficosa S.L (Sector Automoció, Barcelona)}}{Febrer 2018 - Novembre 2021}
     Desenvolupament de software en C, a través de la metodologia SCRUM, per a sistemes d'assistència a l'aparcament pel Grup Volkswagen, 
     formant part de tota la cadena de desenvolupament (ASPICE), tant definició de requisits, el·laboració de l'arquitectura, 
     desenvolupament de software i desenvolupament de proves, tant unitàries com d'integració.
@@ -255,44 +264,60 @@ tècnics i operatius, assegurant el compliment de polítiques de seguretat i la 
 \end{jobshort}
 
 %Projects
-\section{Projectes}
+\section{\texorpdfstring{\icon{\faProjectDiagram}\ Projectes}{Projectes}}
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+ {\large\textbf{\includegraphics[width=0.6cm]{media/mister.png} 2025 - Cerca automàtica de talents al "Futbol Fantasy"}} & \\
+ & \vspace{4pt} \href{https://github.com/quimnaba123/mister-md-scraper}{\faGithub\ Mister MD Scraper} \\[3.75pt]
+\end{tabularx}
+    Desenvolupament d'un script de Python per identificar ràpidament 
+    "gangues" al mercat de "Mister Fantasy Football", específicament per a la primera divisió 
+    espanyola, a l'aplicació Mister Fantasy MD (BeManager).L'aplicació compara els jugadors 
+    disponibles al mercat amb una llista definida per uns experts, i l'script suggereix quins jugadors 
+    s'haurien de fitxar. L'objectiu del projecte és estalviar temps als usuaris optimitzant el 
+    procés de trobar jugadors de futbol valuosos, i poder competir i divertir-te amb els amics.\\
 
-\textbf{2025 - Automatització de cerca de talents al "Futbol Fantasy"} \hfill \href{https://github.com/quimnaba/mister-md-scraper}{Mister MD Scraper} \\[3.75pt]
-Desenvolupament d'un script de Python per identificar ràpidament 
-"gangues" al mercat de "Mister Fantasy Football", específicament per a la primera divisió 
-espanyola, a l'aplicació Mister Fantasy MD (BeManager).L'aplicació compara els jugadors 
-disponibles al mercat amb una llista definida per uns experts, i l'script suggereix quins jugadors 
-s'haurien de fitxar. L'objectiu del projecte és estalviar temps als usuaris optimitzant el 
-procés de trobar jugadors de futbol valuosos, i poder competir i divertir-te amb els amics.\\
+{\large\textbf{\includegraphics[width=0.8cm]{media/stjohngod.jpeg} 2019 - Disseny i Implementació d'una xarxa d'Internet a l'Hospital Sant Joan de Déu de Lunsar, Sierra Leone}} \hfill \\[3.75pt]
+    Participació en un projecte de digitalització, a través d'Aucop -associació de la UPC-, implementat a terreny, d'una xarxa   
+    d'Internet i Intranet, per tal de poder comunicar els servidors d'un hospital rural entre sí,
+    i tenir un punt d'accés a internet a través de 4G. La dificultat més gran va ser
+    haver de dibuixar el plànol de l'hospital in-situ (prèviament fet amb Google Maps) per tal de poder comprovar que 
+    el disseny estratègic de la xarxa era correcte i poder-lo optimitzar al màxim.\\
 
-\textbf{2019 - Disseny i Implementació d'una xarxa d'Internet a l'Hospital Sant Joan de Déu de Lunsar, Sierra Leone} \hfill \\[3.75pt]
-Participació en un projecte de digitalització, a través d'Aucop -associació de la UPC-, implementat a terreny, d'una xarxa   
-d'Internet i Intranet, per tal de poder comunicar els servidors d'un hospital rural entre sí,
-i tenir un punt d'accés a internet a través de 4G. La dificultat més gran va ser
-haver de dibuixar el plànol de l'hospital in-situ (prèviament fet amb Google Maps) per tal de poder comprovar que 
-el disseny estratègic de la xarxa era correcte i poder-lo optimitzar al màxim.\\
-
-\textbf{2018 - Disseny i Implementació d'un carregador de bateries solars per equipamen mèdic a Gambo, Etiòpia} \hfill \\[3.75pt]
-Participació en un projecte de digitalització, implementat a terreny, d'una xarxa   
-d'Internet i Intranet, per tal de poder comunicar els servidors d'un hospital rural entre sí,
-i tenir un punt d'accés a internet a través de 4G. La dificultat més gran va ser
-haver de dibuixar el plànol de l'hospital in-situ (prèviament fet amb Google Maps) per tal de poder comprovar que 
-el disseny estratègic de la xarxa era correcte i poder-lo optimitzar al màxim.\\
+{\large\textbf{\includegraphics[width=1cm]{media/Gambo.png} 2018 - Disseny i Implementació d'un carregador de bateries solars per equipamen mèdic a Gambo, Etiòpia}} \hfill \\[3.75pt]
+    Participació en un projecte de digitalització, implementat a terreny, d'una xarxa   
+    d'Internet i Intranet, per tal de poder comunicar els servidors d'un hospital rural entre sí,
+    i tenir un punt d'accés a internet a través de 4G. La dificultat més gran va ser
+    haver de dibuixar el plànol de l'hospital in-situ (prèviament fet amb Google Maps) per tal de poder comprovar que 
+    el disseny estratègic de la xarxa era correcte i poder-lo optimitzar al màxim.\\
 
 %----------------------------------------------------------------------------------------
 %	EDUCATION
 %----------------------------------------------------------------------------------------
-\section{Educació}
-2023 - Actualitat (Previst 2026)  \textbf{Màster d'Enginyeria Informàtica a Universitat Oberta de Catalunya} \\
-Especialització: Sistemes de Software Avançats, Intel·ligència Artificial i Computació Distribuïda.\\
-Compatibilitzant amb treball professional a temps complet.\\
-Assignatures rellevants: Computació Avançada, Arquitectura al núvol i Sistemes Distribuïts, Intel·ligència Artificial i 
-Ciberseguretat.\\
-
-2013 - 2018 \textbf{Enginyeria de Telecomunicacions Universitat Politècnica de Catalunya}\\ 
-Especialitat: Sistemes Electrònics.\\ 
-Treball final sobre una eina d'automatització de PM a Ficosa.\\
-Compatibilitzant els estudis amb l'execució dels projectes a l'Àfrica.
+\Needspace{20\baselineskip}
+\section{\texorpdfstring{\icon{\faGraduationCap}\ Educació}{Educació}}
+\begin{tabularx}{\linewidth}{@{}X >{\raggedleft\arraybackslash}p{0.28\linewidth}@{}}
+% UOC entry: left = content, right = date (italic, small)
+{\raisebox{-0.65\height}{\includegraphics[width=0.9cm]{media/uoc.png}}\hspace{0.5em}
+\begin{minipage}[t]{\linewidth}
+	\textbf{Màster d'Enginyeria Informàtica}\\
+	\textbf{Universitat Oberta de Catalunya}\\
+    Especialització: Sistemes de Software Avançats, Intel·ligència Artificial i Computació Distribuïda.\\
+    Compatibilitzant amb treball professional a temps complet.\\
+    Assignatures rellevants: Computació Avançada, Arquitectura al núvol i Sistemes Distribuïts, Intel·ligència Artificial i Ciberseguretat.
+\end{minipage}}
+& {\begin{minipage}[t]{\linewidth}\footnotesize\itshape 2023 - Actualitat (Previst 2026)\end{minipage}} \\
+\\[6pt]
+% UPC entry
+{\raisebox{-0.65\height}{\includegraphics[width=0.9cm]{media/upc.png}}\hspace{0.5em}
+\begin{minipage}[t]{\linewidth}
+	\textbf{Enginyeria de Telecomunicacions}\\
+	\textbf{Universitat Politècnica de Catalunya}\\
+    Especialitat: Sistemes Electrònics.\\
+    Treball final sobre una eina d'automatització de PM a Ficosa.\\
+    Compatibilitzant els estudis amb l'execució dels projectes a l'Àfrica.
+\end{minipage}}
+& {\begin{minipage}[t]{\linewidth}\footnotesize\itshape 2013 - 2018\end{minipage}} 
+\end{tabularx}
 
 %----------------------------------------------------------------------------------------
 %	PUBLICATIONS
@@ -306,25 +331,27 @@ Compatibilitzant els estudis amb l'execució dels projectes a l'Àfrica.
 %----------------------------------------------------------------------------------------
 %	SKILLS
 %----------------------------------------------------------------------------------------
-\section{Habilitats Professionals}
+\section{\texorpdfstring{\icon{\faCogs}\ Habilitats Professionals}{Habilitats Professionals}}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-    Generals &  \normalsize{Git, Windows, Linux, CAN, ETH, RTP, Android, Docker, Kubernetes}\\
-    Programació &  \normalsize{Python, C, C++, Matlab, Simulink, Java, Bash, Visual Basic, XML, JSON, SQL, LaTex}\\
-    Software Incrustat  &  \normalsize{Lauterbach TRACE32, J-Link Segger}\\  
-    Sector eòlica &  \normalsize{Eines internes de configuració de la turbina, eines personalitzades de SAP}\\  
-    Automoció &  \normalsize{Enterprise Architect, Eines de Vector (DaVinci Developer \& Configurator, P-CAN), ASPICE, DOORS}\\  
-    Gestió de Projectes &  \normalsize{Jira, SVN, Eines de Microsoft Office (Excel, Word, PPT...)}  
+    \icon{\faTools} Generals &  Git, Windows, Linux, CAN, ETH, RTP, Android, Docker, Kubernetes\\
+    \icon{\faCode} Programació &  Python, C, C++, Matlab, Simulink, Java, Bash, Visual Basic, XML, JSON, SQL, LaTex\\
+    \icon{\faMicrochip} Software Incrustat  &  Lauterbach TRACE32, J-Link Segger\\  
+    \icon{\faWind} Sector eòlica &  Eines internes de configuració de la turbina, eines personalitzades de SAP\\  
+    \icon{\faCar} Automoció &  Enterprise Architect, Eines de Vector (DaVinci Developer \& Configurator, P-CAN), ASPICE, DOORS\\  
+    \icon{\faTasks} Gestió de Projectes &  Jira, SVN, Eines de Microsoft Office (Excel, Word, PPT...)  
 \end{tabularx}
 
-\section{Habilitats Personals}
+\section{\texorpdfstring{\icon{\faUserFriends}\ Habilitats Personals}{Habilitats Personals}}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-    Idiomes &  \normalsize{Català i Castellà (nadiu, C1 certificat) i Anglès (avançat, C1)}\\
-    Generals &  \normalsize{Humilitat, Empatia i Escolta activa, Treball en equip, Lideratge i Presa de decisions, Pensament lògic, Tolerància i Respecte.}\\
-    Interesos  &  \normalsize{Esports, Gimnàs, Videojocs, Fotografia, Viatges}\\  
-    Carnets de Conduir &  \normalsize{A, A2, A1, AM, B i PER} 
+    \icon{\faLanguage} Idiomes &  Català i Castellà (nadiu, C1 certificat) i Anglès (avançat, C1)\\
+    \icon{\faHandshake} Generals &  Humilitat, Empatia i Escolta activa, Treball en equip, Lideratge i Presa de decisions, Pensament lògic, Tolerància i Respecte.\\
+    \icon{\faHeart} Interesos  &  Esports, Gimnàs, Videojocs, Fotografia, Viatges\\  
+    \icon{\faIdCard} Carnets de Conduir &  A, A2, A1, AM, B i PER 
 \end{tabularx}
 
 \vfill
-\center{\footnotesize Última actualització: \today}
+\begin{center}
+    {\footnotesize \icon{\faSync} Última actualització: \today}
+\end{center}
 
 \end{document}
